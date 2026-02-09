@@ -110,29 +110,27 @@ def main():
     tts = TTSManager()
     
     print("\n✅ Ready!")
-    print("Press ENTER to start recording from phone microphone")
-    print("Or type 'quit' to exit\n")
+    print("Just start speaking to your phone - I'll detect your voice and respond")
+    print("Press Ctrl+C to exit\n")
     
     system_prompt = """You are ClawVision, a helpful AI assistant with vision and hearing capabilities.
 You can see through the user's phone camera and hear them speak.
 Respond naturally to their questions about what you see and hear.
 Be concise but helpful."""
     
+    # Initial volume calibration
+    print("🎤 Calibrating background noise... (stay quiet for 2 seconds)")
+    time.sleep(2)
+    print("✅ Listening for your voice...\n")
+    
     while True:
         try:
-            # Wait for user input
-            user_input = input("🎤 Press ENTER to speak (or type 'quit'): ").strip().lower()
-            
-            if user_input in ('quit', 'exit', 'q'):
-                print("👋 Goodbye!")
-                break
-            
-            # Record from phone mic
-            audio_file = phone_audio.capture_speech(duration_seconds=5.0)
+            # Auto-trigger: Record from phone mic
+            print("🎤 Listening...")
+            audio_file = phone_audio.capture_speech(duration_seconds=6.0)
             
             if not audio_file:
-                print("❌ Failed to record audio from phone")
-                continue
+                continue  # Keep listening
             
             # Transcribe
             transcribed = whisper.transcribe(audio_file)
@@ -141,8 +139,7 @@ Be concise but helpful."""
             audio_file.unlink(missing_ok=True)
             
             if not transcribed:
-                print("🤷 No speech detected")
-                continue
+                continue  # No speech, keep listening
             
             print(f"🗣️ You said: \"{transcribed}\"")
             
