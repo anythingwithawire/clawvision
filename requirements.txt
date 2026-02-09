@@ -20,5 +20,8 @@ PyYAML>=6.0
 # Text-to-speech (Google TTS)
 gtts>=2.5.0
 
+# Speech-to-text (local Whisper)
+faster-whisper>=1.0.0
+
 # For type hints (optional but recommended)
 typing-extensions>=4.8.0
