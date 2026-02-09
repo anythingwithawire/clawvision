@@ -1,0 +1,76 @@
+# ClawVision Configuration
+# Copy this file to config.yaml and fill in your values
+
+# ═══════════════════════════════════════════════════════════
+# REQUIRED SETTINGS
+# ═══════════════════════════════════════════════════════════
+
+# Your Gemini API key from https://aistudio.google.com/app/apikey
+gemini_api_key: "YOUR_API_KEY_HERE"
+
+# Phone IP Webcam URL (check the app for your actual URL)
+phone_url: "http://192.168.1.100:8080"
+
+
+# ═══════════════════════════════════════════════════════════
+# OPTIONAL SETTINGS
+# ═══════════════════════════════════════════════════════════
+
+# Gemini model to use
+gemini_model: "gemini-2.0-flash-exp"
+
+# Video stream endpoint (IP Webcam usually uses /video)
+video_endpoint: "/video"
+
+# Audio stream endpoint (IP Webcam usually uses /audio.wav)
+audio_endpoint: "/audio.wav"
+
+
+# ═══════════════════════════════════════════════════════════
+# OpenClaw Gateway Settings
+# ═══════════════════════════════════════════════════════════
+
+openclaw_host: "localhost"
+openclaw_port: 18789
+openclaw_token: null  # Set to your token if gateway requires auth
+
+
+# ═══════════════════════════════════════════════════════════
+# Audio Settings
+# ═══════════════════════════════════════════════════════════
+
+# Input source: "phone" (IP Webcam) or "local" (computer microphone)
+audio_input_source: "phone"
+
+# Local microphone device index (if using local audio)
+# Run: python -c "import sounddevice; print(sounddevice.query_devices())"
+# Set to null for default device
+local_mic_device: null
+
+# Sample rates (should match Gemini requirements)
+input_sample_rate: 16000   # For sending to Gemini
+output_sample_rate: 24000  # For receiving from Gemini
+
+
+# ═══════════════════════════════════════════════════════════
+# Video Settings
+# ═══════════════════════════════════════════════════════════
+
+# Target frames per second to send to Gemini
+# Lower = less bandwidth, higher latency
+# Higher = more responsive, more bandwidth
+fps_target: 1.0
+
+# JPEG compression quality (0-100)
+jpeg_quality: 85
+
+
+# ═══════════════════════════════════════════════════════════
+# Behavior Settings
+# ═══════════════════════════════════════════════════════════
+
+# Start automatically when launched
+auto_start: true
+
+# Enable debug logging
+debug: false

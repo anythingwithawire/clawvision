@@ -1,0 +1,24 @@
+# ClawVision - Dependencies
+
+# WebSocket client for Gemini Live API
+websockets>=12.0
+
+# HTTP requests
+requests>=2.31.0
+
+# Image processing
+Pillow>=10.0.0
+
+# Audio processing
+sounddevice>=0.4.6
+soundfile>=0.12.1
+numpy>=1.24.0
+
+# Video capture
+opencv-python>=4.8.0
+
+# Configuration
+PyYAML>=6.0
+
+# For type hints (optional but recommended)
+typing-extensions>=4.8.0
