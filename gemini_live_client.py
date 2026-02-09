@@ -29,7 +29,7 @@ class GeminiLiveClient:
     """
     
     # Gemini Live API endpoint
-    API_URL = "wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent"
+    API_URL = "wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent"
     
     def __init__(
         self,
@@ -57,7 +57,7 @@ class GeminiLiveClient:
         """Build the initial setup message with configuration."""
         return {
             "setup": {
-                "model": f"models/{self.model}",
+                "model": f"{self.model}",
                 "generation_config": {
                     "response_modalities": ["AUDIO"],
                     "speech_config": {
