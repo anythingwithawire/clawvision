@@ -201,9 +201,13 @@ class VideoCapture:
         Returns:
             Base64-encoded JPEG string
         """
-        # This is a synchronous version for one-off captures
+        # Initialize capture if not already done
         if not self._cap:
-            return None
+            self._cap = cv2.VideoCapture(self.config.url)
+            if not self._cap.isOpened():
+                self.logger.error(f"Failed to open video stream: {self.config.url}")
+                return None
+            self.logger.info(f"📹 Video stream opened: {self.config.url}")
         
         ret, frame = self._cap.read()
         if not ret:
